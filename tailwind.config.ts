@@ -18,7 +18,12 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        outfit: ["Outfit"],
+      },
       colors: {
+        "et-teal": "#2D8086",
+        "et-black": "#171717",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -57,6 +62,10 @@ const config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        "custom-black": "-4px 4px 0px 0px black",
+        "large-component": "-54px 34px 26.6px -12px rgba(0, 0, 0, 0.12)",
       },
       keyframes: {
         "accordion-down": {
