@@ -7,7 +7,10 @@ const Hero = () => {
         <div className="text-[48px] xl:text-[72px] font-bold text-et-black text-center w-full md:text-left leading-none items-center">
           <p>knowledge</p>
           <p>
-            made <span className="text-teal-600">simple.</span>
+            made{" "}
+            <span className="bg-gradient-to-br from-et-teal to-teal-400 bg-clip-text text-transparent">
+              simple.
+            </span>
           </p>
         </div>
 

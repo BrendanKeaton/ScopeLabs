@@ -28,9 +28,9 @@ export default function SignIn() {
       </div>
       <div className="w-full mb-12">
         <form className="flex-1 flex flex-col min-w-64">
-          <h1 className="text-xl font-light text-[#858585] font-outfit pb-2">
+          <h2 className="text-xl font-light text-[#858585] font-outfit pb-2">
             already have an account?
-          </h1>
+          </h2>
           <div className="flex flex-row items-center gap-x-4">
             <UserRound strokeWidth={2} size={32} />
             <span className="text-et-black text-[32px] font-bold">sign in</span>
@@ -43,7 +43,7 @@ export default function SignIn() {
               name="email"
               placeholder="email@example.com"
               required
-              className="rounded-[0.3rem] border-gray-400 text-black font-medium placeholder:text-gray-400 py-5 text-[12px] md:text-[14px]"
+              className="rounded-[0.3rem] border-gray-400 text-black font-light font-outfit placeholder:text-gray-400 py-5 text-[12px] md:text-[14px]"
             />
             <div className="flex justify-between items-center">
               <Label
@@ -58,7 +58,7 @@ export default function SignIn() {
               name="password"
               placeholder="your password"
               required
-              className="rounded-[0.3rem] border-gray-400 text-black font-medium placeholder:text-gray-400 py-5 text-[12px] md:text-[14px]"
+              className="rounded-[0.3rem] border-gray-400 text-black font-light font-outfit placeholder:text-gray-400 py-5 text-[12px] md:text-[14px]"
             />
             <SubmitButton
               pendingText="going..."

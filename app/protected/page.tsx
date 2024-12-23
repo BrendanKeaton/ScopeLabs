@@ -1,6 +1,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import Test from "@/components/test";
+import Dashboard from "@/components/protected/dashboard";
+import NavbarProtected from "@/components/protected/navbar-protected";
 
 export default async function ProtectedPage() {
   const supabase = await createClient();
@@ -15,7 +16,7 @@ export default async function ProtectedPage() {
 
   return (
     <div>
-      <Test userId={user.id} />
+      <Dashboard />
     </div>
   );
 }
