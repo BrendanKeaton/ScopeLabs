@@ -40,9 +40,7 @@ export const fetchVideoData = async (
 
   if (videoRet.video_url.includes("youtube.com/watch?v=")) {
     const videoId = new URL(videoRet.video_url).searchParams.get("v");
-    if (videoId) {
-      videoRet.video_url = `https://www.youtube.com/embed/${videoId}`;
-    }
+    videoRet.video_url = `https://www.youtube.com/embed/${videoId}`;
   }
 
   return videoRet;
@@ -75,9 +73,7 @@ export const fetchAllVideos = async (
   videos.forEach((video: VideoInterface) => {
     if (video.video_url.includes("youtube.com/watch?v=")) {
       const videoId = new URL(video.video_url).searchParams.get("v");
-      if (videoId) {
-        video.video_url = `https://www.youtube.com/embed/${videoId}`;
-      }
+      video.video_url = `https://www.youtube.com/embed/${videoId}`;
     }
   });
 
