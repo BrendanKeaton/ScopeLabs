@@ -7,7 +7,7 @@ import {
   addNewVideo,
 } from "@/api/api";
 import Link from "next/link";
-import { Video, Play } from "lucide-react";
+import { Video, Play, Info } from "lucide-react";
 
 import { hourglass } from "ldrs";
 import { Button } from "../ui/button";
@@ -125,7 +125,15 @@ const Dashboard = () => {
 
         {showForm && (
           <div className="mb-4 p-4 border border-gray-300 rounded-xl shadow-custom-black bg-gray-50">
-            <h3 className="font-bold text-lg mb-2">add a new video</h3>
+            <div className="flex flex-col lg:flex-row items-center mb-2 gap-y-2">
+              <h3 className="font-bold text-lg mr-4">add a new video</h3>
+              <Info size={16} color="red" className="mr-2" />
+              <p className="text-red-500 font-light font-outfit text-[14px] text-center lg:text-start">
+                currently, only youtube links work natively (copy pasting
+                directly from url), for platforms outside youtube, please
+                provided an embeded url.
+              </p>
+            </div>
             <form className="w-full flex flex-col" onSubmit={handleAddNewVideo}>
               <div className="mb-2 rounded-2xl">
                 <label

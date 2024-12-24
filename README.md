@@ -1,8 +1,12 @@
-<img alt="EdTech Platform Preview" src="./example_video.png">
-
 <a href="">
-  <h1 align="center" style="font-family: 'Atkinson Hyperlegible'; color: #171717;">EdTech Platform for K-12 & University Students</h1>
+  <h1 align="center">EdTech Platform for K-12 & University Students</h1>
 </a>
+
+## IMAGES OF PLATFORM
+
+<img alt="EdTech Platform Preview" src="./example_video.png">
+<img alt="EdTech Platform Preview" src="./example_home.png">
+<img alt="EdTech Platform Preview" src="./landing_page.png">
 
 <p align="center" style="font-family: 'Outfit';">
   <a href="#features"><strong>Features</strong></a> ·
@@ -10,6 +14,11 @@
   <a href="#setup-and-run"><strong>Setup and Run</strong></a>
 </p>
 <br/>
+
+## NOTES:
+
+- EMAIL CONFIRMATION IS DISABLED FOR THE PURPOSE OF TESTING
+- Currently, only youtube links work natively (copy pasting directly from url), others could added, but would need added support, for platforms outside youtube, please provided an embeded url.
 
 ## Features
 
@@ -70,5 +79,3 @@ To set up and run the platform locally:
 4. npm install & npm run dev
 5. cd api & run: uvicorn index:app --reload
 6. The platform should now be running locally and accessible at http://localhost:3000.
-
-## EMAIL CONFIRMATION IS DISABLED FOR THE PURPOSE OF TESTING
