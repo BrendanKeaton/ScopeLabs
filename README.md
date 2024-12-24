@@ -1,3 +1,5 @@
+<img alt="EdTech Platform Preview" src="./example_video.png">
+
 <a href="">
   <h1 align="center" style="font-family: 'Atkinson Hyperlegible'; color: #171717;">EdTech Platform for K-12 & University Students</h1>
 </a>
@@ -68,3 +70,5 @@ To set up and run the platform locally:
 4. npm install & npm run dev
 5. cd api & run: uvicorn index:app --reload
 6. The platform should now be running locally and accessible at http://localhost:3000.
+
+## EMAIL CONFIRMATION IS DISABLED FOR THE PURPOSE OF TESTING
