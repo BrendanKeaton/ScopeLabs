@@ -1,13 +1,20 @@
-"use client";
-
 import DashboardDynamic from "@/components/protected/dashboard-dyanmic";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-const VideoPage = () => {
+export default async function VideoPage() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect("/sign-in");
+  }
   return (
     <div>
-      <DashboardDynamic />
+      <DashboardDynamic user_id={user.id} />
     </div>
   );
-};
-
-export default VideoPage;
+}

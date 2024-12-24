@@ -8,6 +8,13 @@ export type VideoInterface = {
   id: string;
 };
 
+export type VideoAdd = {
+  user_id: string;
+  video_url: string;
+  title: string;
+  description: string;
+};
+
 export type Comment = {
   created_at: string;
   content: string;
@@ -78,4 +85,60 @@ export const fetchAllVideos = async (
   });
 
   return videos;
+};
+
+export const addNewVideo = async (
+  userId: string,
+  description: string,
+  video_url: string,
+  title: string
+): Promise<any> => {
+  const payload = {
+    user_id: userId,
+    description: description,
+    video_url: video_url,
+    title: title,
+  };
+
+  const response = await fetch("/api/py/addVideo", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add new video");
+  }
+
+  return await response.json();
+};
+
+export const addNewComment = async (
+  videoId: string,
+  content: string,
+  userId: string
+): Promise<any> => {
+  const payload = {
+    video_id: videoId,
+    content: content,
+    user_id: userId,
+  };
+
+  const response = await fetch("/api/py/addComment", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to add new comment");
+  }
+
+  return await response.json();
 };

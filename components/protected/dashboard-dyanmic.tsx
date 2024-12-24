@@ -7,10 +7,12 @@ import {
   fetchAllVideos,
   VideoInterface,
   Comment,
+  addNewComment,
 } from "@/api/api";
 import { MessageCircle, Video, Play } from "lucide-react";
 import Link from "next/link";
 import { hourglass } from "ldrs";
+import { Button } from "../ui/button";
 
 //fix for ring from ldrs, from below github issue. Hoping its fixed soon and this can be removed.
 // https://github.com/GriffinJohnston/ldrs/issues/32
@@ -27,7 +29,7 @@ declare module "react" {
   }
 }
 
-const DashboardDynamic = () => {
+const DashboardDynamic = ({ user_id }: { user_id: string }) => {
   hourglass.register();
   const params = useParams();
 
@@ -45,6 +47,8 @@ const DashboardDynamic = () => {
   const [error, setError] = useState<string | null>(null);
   const [commentData, setCommentData] = useState<Comment[]>([]);
   const [allVideos, setAllVideos] = useState<VideoInterface[]>([]);
+  const [showForm, setShowForm] = useState<boolean>(false);
+  const [triggerReload, setTriggerReload] = useState<boolean>(false);
 
   const handleFetchVideoData = async () => {
     setLoading(true);
@@ -85,13 +89,32 @@ const DashboardDynamic = () => {
     }
   };
 
+  const handleAddNewComment = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const newComment = formData.get("comment") as string;
+    if (id != null) {
+      try {
+        await addNewComment(id, newComment, user_id);
+        setTriggerReload(!triggerReload);
+        setShowForm(false);
+      } catch (error) {
+        console.error("Error adding comment:", error);
+        alert("Failed to add comment.");
+      }
+    }
+  };
+
   useEffect(() => {
     handleFetchVideoData();
     handleFetchAllVideos();
     if (videoData.id !== "NO_ID") {
       handleFetchVideoComments();
     }
-  }, [videoData.id]);
+  }, [videoData.id, triggerReload]);
 
   if (loading) {
     return (
@@ -149,10 +172,46 @@ const DashboardDynamic = () => {
             <p className="pt-4 font-outfit leading-snug text-gray-600">
               {videoData.description}
             </p>
-            <div className="text-[20px] xl:text-[32px] font-bold text-et-black leading-none flex flex-row gap-x-2 mt-8">
-              <MessageCircle size={32} strokeWidth={2} />
-              <p>comments</p>
+            <div className="text-[20px] xl:text-[32px] font-bold text-et-black justify-between leading-none flex flex-row items-center mt-8">
+              <div className="flex flex-row gap-x-2">
+                <MessageCircle size={32} strokeWidth={2} />
+                <p>comments</p>
+              </div>
+              <Button
+                variant={"default"}
+                size={"edTech"}
+                onClick={() => setShowForm(!showForm)}
+              >
+                Add Comment +
+              </Button>
             </div>
+            {showForm && (
+              <div className="mb-4 p-4 mt-6">
+                <h3 className="font-bold text-lg mb-2">add a new comment</h3>
+                <form
+                  className="w-full flex flex-col"
+                  onSubmit={handleAddNewComment}
+                >
+                  <div className="mb-2 rounded-2xl">
+                    <textarea
+                      id="comment"
+                      name="comment"
+                      className="w-full rounded-[0.3rem] border pl-2 py-2 border-gray-400 text-et-black font-light font-outfit placeholder:text-gray-400 text-[12px] md:text-[14px]"
+                      placeholder="enter your comment"
+                      rows={3}
+                    ></textarea>
+                  </div>
+                  <Button
+                    variant={"default"}
+                    size={"edTech"}
+                    className="place-self-end"
+                    type="submit"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              </div>
+            )}
             {commentData.length > 0 ? (
               <div>
                 {commentData.map((comment) => (
@@ -197,7 +256,12 @@ const DashboardDynamic = () => {
                   href={`/protected/${video.id}`}
                   className="gap-x-3 flex flex-row items-center text-et-teal hover:text-et-black"
                 >
-                  <Play fill="#2D8086" size={32} strokeWidth={0} />
+                  <Play
+                    fill="#2D8086"
+                    size={32}
+                    strokeWidth={0}
+                    className="min-w-[32px]"
+                  />
                   <p className="font-medium text-[16px] line-clamp-1 font-outfit">
                     {video.title}
                   </p>
