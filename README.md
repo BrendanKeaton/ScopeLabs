@@ -1,11 +1,6 @@
 <a href="">
-  <img alt="EdTech Platform Preview" src="/public/example_video.png">
-  <h1 align="center" style="font-family: 'Atkinson Hyperlegible'; color: #171717;">EdTech Platform for K-12 Students</h1>
+  <h1 align="center" style="font-family: 'Atkinson Hyperlegible'; color: #171717;">EdTech Platform for K-12 & University Students</h1>
 </a>
-
-<p align="center" style="font-family: 'Outfit'; color: #2D8086;">
- A thoughtfully designed learning environment for K-12 students across various devices.
-</p>
 
 <p align="center" style="font-family: 'Outfit';">
   <a href="#features"><strong>Features</strong></a> ·
@@ -40,7 +35,7 @@ The platform is designed to foster an engaging, professional, and approachable l
 
 - **Primary color:** #2D8086 (teal) for a calm and inviting atmosphere
 - **Secondary color:** #171717 (black) for clear visual hierarchy
-- **Typography:** Simple, modern fonts (Atkinson Hyperlegible and Outfit) with no capital letters to reduce complexity for younger audiences.
+- **Typography:** Simple, modern fonts (Atkinson Hyperlegible and Outfit) with no capital letters, to give the platform a more fun & playful feel for younger students.
 
 ### User Interface
 
@@ -65,9 +60,7 @@ To set up and run the platform locally:
    git clone [REPOSITORY_URL]
    ```
 2. cd [PROJECT_DIRECTORY]
-3. Set up the .env.local file using the configuration sent via email.
-4. npm install
-   npm run dev
-5. cd api
-   uvicorn index:app --reload
+3. Set up the .env.local file using the information sent via email.
+4. npm install & npm run dev
+5. cd api & run: uvicorn index:app --reload
 6. The platform should now be running locally and accessible at http://localhost:3000.
