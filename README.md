@@ -11,11 +11,12 @@
 
 ## Features
 
-- Intuitive video interface inspired by familiar platforms like YouTube
+- Intuitive video interface inspired by familiar platforms like YouTube, to allow younger students to have a familar UI/UX while using the platform.
 - User-centric design for younger audiences:
   - ESL-friendly navigation with icons
   - Buttons optimized for touch devices
   - Minimalist layout to focus on content
+  - Buttons designed to be responsive and engaging for younger audiences
 - Responsive design for seamless use across:
   - Desktop and laptops
   - Tablets
@@ -26,6 +27,9 @@
 - Built using:
   - **Frontend:** Next.js, TailwindCSS
   - **Backend:** FastAPI
+- Full Software Capabilities:
+  - Fully integrated authentication system
+  - Landing page, Profile Page, etc.
 
 ## Design Overview
 
