@@ -15,7 +15,7 @@ export default async function ProtectedPage() {
 
   return (
     <div>
-      <Dashboard user_id={user.id} />
+      <Dashboard />
     </div>
   );
 }

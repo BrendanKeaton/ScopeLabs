@@ -11,7 +11,7 @@ const Atkinson = Atkinson_Hyperlegible({
 
 export const outfit = Outfit({
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "700"], // Include desired weights
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 

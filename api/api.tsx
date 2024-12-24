@@ -1,3 +1,5 @@
+// Create types for params
+
 export type VideoInterface = {
   created_at: string;
   video_url: string;
@@ -23,6 +25,7 @@ export type Comment = {
   id: string;
 };
 
+// Call fastAPI from frontend
 export const fetchVideoData = async (
   userId: string,
   videoId?: string
@@ -45,6 +48,8 @@ export const fetchVideoData = async (
     }
   }
 
+  // Test if video is from youtube, change URL to embeded if so
+  // This is also where you could implement it for other sites.
   if (videoRet.video_url.includes("youtube.com/watch?v=")) {
     const videoId = new URL(videoRet.video_url).searchParams.get("v");
     videoRet.video_url = `https://www.youtube.com/embed/${videoId}`;
@@ -53,6 +58,7 @@ export const fetchVideoData = async (
   return videoRet;
 };
 
+// Fetch comments for a given video w/ ID
 export const fetchVideoComments = async (
   videoId: string
 ): Promise<Comment[]> => {
@@ -66,6 +72,7 @@ export const fetchVideoComments = async (
   return data.comments;
 };
 
+// Retrieve all videos under the userId, param is just set up for changing user outside of this take home test
 export const fetchAllVideos = async (
   userId: string
 ): Promise<VideoInterface[]> => {
@@ -87,6 +94,7 @@ export const fetchAllVideos = async (
   return videos;
 };
 
+// Add new video given the parameters
 export const addNewVideo = async (
   userId: string,
   description: string,
@@ -116,6 +124,7 @@ export const addNewVideo = async (
   return await response.json();
 };
 
+// Add new comment given the parameters
 export const addNewComment = async (
   videoId: string,
   content: string,

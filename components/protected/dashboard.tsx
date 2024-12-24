@@ -1,11 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  fetchVideoData,
-  fetchAllVideos,
-  VideoInterface,
-  addNewVideo,
-} from "@/api/api";
+import { fetchAllVideos, VideoInterface, addNewVideo } from "@/api/api";
 import Link from "next/link";
 import { Video, Play, Info } from "lucide-react";
 
@@ -29,36 +24,17 @@ declare module "react" {
 
 const Dashboard = () => {
   hourglass.register();
-  const [videoData, setVideoData] = useState<VideoInterface>({
-    created_at: "01/01/2000",
-    video_url: "NO_URL",
-    user_id: "NO_USER",
-    title: "NO_TITLE",
-    description: "NO_DESC",
-    num_comments: 0,
-    id: "NO_ID",
-  });
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [allVideos, setAllVideos] = useState<VideoInterface[]>([]);
   const [showForm, setShowForm] = useState<boolean>(false);
   const [triggerReload, setTriggerReload] = useState<boolean>(false);
 
-  const handleFetchVideoData = async () => {
+  // Get all videos for homepage. Hardcode user to be myself and only videos I've uploaded
+  // Keep parameter here so changing to other users / a list would be easy.
+  const handleFetchAllVideos = async () => {
     setLoading(true);
     setError(null);
-
-    try {
-      const video = await fetchVideoData("brendan_keaton");
-      setVideoData(video);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : "An error occurred");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleFetchAllVideos = async () => {
     try {
       const videos = await fetchAllVideos("brendan_keaton");
       setAllVideos(videos);
@@ -67,6 +43,7 @@ const Dashboard = () => {
     }
   };
 
+  // Handle adding a new video using the form in the return section
   const handleAddNewVideo = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -77,6 +54,7 @@ const Dashboard = () => {
 
     try {
       await addNewVideo("brendan_keaton", description, videoUrl, title);
+      // This is just reloading the page on video submissions rather than the user having to manually
       setTriggerReload(!triggerReload);
       setShowForm(false);
     } catch (error) {
@@ -85,11 +63,12 @@ const Dashboard = () => {
     }
   };
 
+  // Fetch all videos on form submission
   useEffect(() => {
-    handleFetchVideoData();
     handleFetchAllVideos();
   }, [triggerReload]);
 
+  // instead of loading.tsx, just have short loading page with the hourglass here.
   if (loading) {
     return (
       <div className="min-h-[80vh] min-w-full flex items-center justify-center">
@@ -104,6 +83,7 @@ const Dashboard = () => {
     );
   }
 
+  // Tailwind & Design for the page
   return (
     <main className="flex flex-col justify-between pt-10 gap-x-8">
       <div className="w-full">

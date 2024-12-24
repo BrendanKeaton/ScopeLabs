@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 import httpx
 from pydantic import BaseModel
 
-
+# Create classes for the input of functions
 class Video(BaseModel):
     user_id: str
     description: str

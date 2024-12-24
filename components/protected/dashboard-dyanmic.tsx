@@ -50,6 +50,7 @@ const DashboardDynamic = ({ user_id }: { user_id: string }) => {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [triggerReload, setTriggerReload] = useState<boolean>(false);
 
+  // Handle fetching a video, hardcoded user for purpose of this take home
   const handleFetchVideoData = async () => {
     setLoading(true);
     setError(null);
@@ -64,6 +65,7 @@ const DashboardDynamic = ({ user_id }: { user_id: string }) => {
     }
   };
 
+  // Get all videos for the "other videos" section, again with hardcoded user_id
   const handleFetchAllVideos = async () => {
     try {
       const videos = await fetchAllVideos("brendan_keaton");
@@ -89,6 +91,7 @@ const DashboardDynamic = ({ user_id }: { user_id: string }) => {
     }
   };
 
+  // Handle adding a new comment using the form in the return section
   const handleAddNewComment = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -108,6 +111,7 @@ const DashboardDynamic = ({ user_id }: { user_id: string }) => {
     }
   };
 
+  // Update all data on page change / comment added, Don't show comments unless video is selected
   useEffect(() => {
     handleFetchVideoData();
     handleFetchAllVideos();
@@ -130,6 +134,7 @@ const DashboardDynamic = ({ user_id }: { user_id: string }) => {
     );
   }
 
+  // tailwind & design for main pages.
   return (
     <main className="flex flex-col md:flex-row justify-between pt-10 gap-x-8 mb-32 w-full">
       <div>
